@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/catalog">
+
+    <fragment
+        android:id="@+id/catalog"
+        android:name="com.gruppa.books.ui.CatalogFragment"
+        android:label="CatalogFragment" />
+    <fragment
+        android:id="@+id/shopping_cart"
+        android:name="com.gruppa.books.ui.ShoppingCartFragment"
+        android:label="ShoppingCartFragment" />
+    <fragment
+        android:id="@+id/history"
+        android:name="com.gruppa.books.ui.HistoryFragment"
+        android:label="HistoryFragment" />
+</navigation>
