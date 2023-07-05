@@ -3,5 +3,7 @@
     <string name="catalog">Каталог</string>
     <string name="cart">Корзина</string>
     <string name="history">История</string>
-
+    <string name="search">Поиск</string>
+    <string name="buy">Купить</string>
+    <string name="price">%d руб.</string>
 </resources>
