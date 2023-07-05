@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/background"
     tools:context=".MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
@@ -21,6 +22,9 @@
         android:id="@+id/navBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:itemBackground="@color/colorLightGray"
+        app:itemIconTint="@color/colorCaptionText"
+        app:itemTextColor="@color/colorCaptionText"
         app:menu="@menu/bottom_nav_menu"
         />
 
