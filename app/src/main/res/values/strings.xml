@@ -6,4 +6,8 @@
     <string name="search">Поиск</string>
     <string name="buy">Купить</string>
     <string name="price">%d руб.</string>
+
+    <string name="go_back">Назад</string>
+    <string name="ordering">Перейти к оформлению заказа</string>
+    <string name="total_price">Итого:</string>
 </resources>
