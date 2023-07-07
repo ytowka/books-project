@@ -13,4 +13,5 @@
 
     <color name="colorCaptionText">#F0F0F0</color>
     <color name="colorText">@color/white</color>
+    <color name="history_item_background">#2C2B2F</color>
 </resources>
