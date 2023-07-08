@@ -62,6 +62,7 @@
         </FrameLayout>
 
         <TextView
+            android:id="@+id/tv_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintStart_toStartOf="parent"
