@@ -9,5 +9,6 @@ data class Book(
     val description: String,
     val mark: Float,
     val price: Int,
+    val inCartCount: Int = 0
 ) {
 }
