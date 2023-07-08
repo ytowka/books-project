@@ -18,7 +18,7 @@
             android:id="@+id/btn_goBack"
             android:layout_width="96dp"
             android:layout_height="40dp"
-            android:text="@string/goBack"
+            android:text="@string/go_back"
             android:textSize="13sp"
             android:textColor="@color/black"
             android:drawableTint="@color/black"
@@ -32,7 +32,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="615dp">
+        android:layout_height="0dp"
+        android:layout_weight="1f"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
