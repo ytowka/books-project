@@ -1,5 +1,7 @@
 package com.gruppa.books.models
 
+import com.gruppa.books.data.db.entities.BookEntity
+
 data class Book(
     val id: Long,
     val name: String,
@@ -11,4 +13,8 @@ data class Book(
     val price: Int,
     val inCartCount: Int = 0,
 ) {
+
+    fun toEntity() = BookEntity(
+        id, name, imageUrl, author, editionYear, description, mark, price
+    )
 }

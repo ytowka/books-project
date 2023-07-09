@@ -10,10 +10,7 @@ import java.util.concurrent.Executors
 class MainModule(val app: App) {
 
     val database by lazy {
-        Room
-            .databaseBuilder(app, BooksDatabase::class.java, "booksDB")
-            .addTypeConverter(TypeConverters::class)
-            .build()
+        BooksDatabase.create(app)
     }
 
     val booksDao by lazy {

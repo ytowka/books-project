@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 import java.util.Date
 
 @ProvidedTypeConverter
-class TypeConverters {
+object TypeConverters {
 
     @TypeConverter
     fun convertDate(date: Date): Long{
