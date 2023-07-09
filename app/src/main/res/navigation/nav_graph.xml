@@ -7,7 +7,11 @@
     <fragment
         android:id="@+id/catalog"
         android:name="com.gruppa.books.ui.CatalogFragment"
-        android:label="CatalogFragment" />
+        android:label="CatalogFragment" >
+        <action
+            android:id="@+id/action_catalog_to_productPageFragment"
+            app:destination="@id/product_page" />
+    </fragment>
     <fragment
         android:id="@+id/shopping_cart"
         android:name="com.gruppa.books.ui.ShoppingCartFragment"
@@ -16,4 +20,12 @@
         android:id="@+id/history"
         android:name="com.gruppa.books.ui.HistoryFragment"
         android:label="HistoryFragment" />
+    <fragment
+        android:id="@+id/product_page"
+        android:name="com.gruppa.books.ui.ProductPageFragment"
+        android:label="ProductPageFragment" >
+        <action
+            android:id="@+id/action_productPageFragment_to_catalog"
+            app:destination="@id/catalog" />
+    </fragment>
 </navigation>
