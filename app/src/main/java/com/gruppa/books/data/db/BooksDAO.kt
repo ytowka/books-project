@@ -11,6 +11,7 @@ import com.gruppa.books.data.db.entities.BookEntity
 import com.gruppa.books.data.db.entities.BookOrderCountEntity
 import com.gruppa.books.data.db.relations.OrderBooksRelation
 import com.gruppa.books.data.db.entities.OrderEntity
+import com.gruppa.books.data.db.entities.ReviewEntity
 import com.gruppa.books.models.Book
 
 @Dao
@@ -41,6 +42,9 @@ interface BooksDAO {
             WHERE orders.id = :orderId
             """)
     fun getOrderDetails(orderId: Int): LiveData<List<OrderBooksRelation>>
+
+    @Query("""SELECT * FROM reviews WHERE bookId = :bookId""")
+    fun getBookReviews(bookId: Long): LiveData<List<ReviewEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addToCart(bookCartCountEntity: BookCartCountEntity)

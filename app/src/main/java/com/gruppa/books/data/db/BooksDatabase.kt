@@ -7,9 +7,13 @@ import com.gruppa.books.data.db.entities.BookCartCountEntity
 import com.gruppa.books.data.db.entities.BookEntity
 import com.gruppa.books.data.db.entities.BookOrderCountEntity
 import com.gruppa.books.data.db.entities.OrderEntity
+import com.gruppa.books.data.db.entities.ReviewEntity
 
 @Database(
-    entities = [BookEntity::class, BookOrderCountEntity::class, BookCartCountEntity::class, OrderEntity::class],
+    entities = [
+        BookEntity::class, BookOrderCountEntity::class, BookCartCountEntity::class, OrderEntity::class,
+        ReviewEntity::class,
+    ],
     version = 1,
     exportSchema = false
 )
