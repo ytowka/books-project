@@ -8,7 +8,9 @@ import com.gruppa.books.R
 import com.gruppa.books.databinding.ItemHistoryBinding
 import com.gruppa.books.models.Order
 
-class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
+class HistoryAdapter(
+    val onCardClick: (Int) -> Unit
+) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
     var list: List<Order> = emptyList()
         set(value) {
@@ -51,6 +53,10 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() 
                 binding.root.context.getString(R.string.quantity, order.quantityBooks)
             binding.tvTotalPrice.text =
                 binding.root.context.getString(R.string.price, order.totalPrice)
+
+            binding.root.setOnClickListener {
+                onCardClick(order.id)
+            }
         }
     }
 
