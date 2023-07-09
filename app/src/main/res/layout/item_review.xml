@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/colorLightGray"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="12dp"
+        android:layout_marginBottom="7dp">
+
+        <FrameLayout
+            android:id="@+id/fl_name_grade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Марина" />
+
+            <FrameLayout
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                >
+
+                <TextView
+                    android:id="@+id/tv_grade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="@string/grade"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="5.0" />
+            </FrameLayout>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fl_name_grade"
+            android:layout_marginVertical="12dp"
+            android:textColor="@color/black"
+            android:textSize="11sp"
+            android:lineSpacingMultiplier="1.25"
+            tools:text="Книга потрясающая. По своей пронзительности и искренности трудно найти ей равную. Художник был не только мастером, который останется в веках, но и очень умным думающим человеком. С безмерно трагичной судьбой, когда каждый день — это битва: с непониманием, нищетой, одиночеством, собственным несовершенством. И кто сейчас способен на такие вершины духа?"
+            />
+    </LinearLayout>
+</LinearLayout>
