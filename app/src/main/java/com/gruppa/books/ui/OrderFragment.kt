@@ -51,7 +51,7 @@ class OrderFragment : Fragment() {
             orderAdapter.list = it
         }
 
-        val order = HistoryViewModel().history.value?.single { it.id == arguments?.getInt(ID) }
+        val order = HistoryViewModel().history.value?.single { it.id == arguments?.getLong(ID) }
         binding.run {
             tvOrder.text = binding.root.context.getString(R.string.detailsHeader, order?.number)
             val formatter = SimpleDateFormat ("dd.MM.yy")
@@ -66,9 +66,9 @@ class OrderFragment : Fragment() {
     companion object {
         private const val ID = "ID"
 
-        fun createBundle(id: Int): Bundle {
+        fun createBundle(id: Long): Bundle {
             val bundle = Bundle()
-            bundle.putInt(ID, id)
+            bundle.putLong(ID, id)
             return bundle
         }
 

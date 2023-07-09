@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import com.gruppa.books.data.db.entities.BookCartCountEntity
 import com.gruppa.books.data.db.relations.BookCartCountRelation
 import com.gruppa.books.data.db.entities.BookEntity
@@ -13,18 +14,41 @@ import com.gruppa.books.data.db.relations.OrderBooksRelation
 import com.gruppa.books.data.db.entities.OrderEntity
 import com.gruppa.books.data.db.entities.ReviewEntity
 import com.gruppa.books.models.Book
+import com.gruppa.books.models.Review
 
 @Dao
 interface BooksDAO {
-    @Query("SELECT * FROM books")
+    @Transaction
+    @Query("""
+        SELECT books.*, shopping_cart.* FROM books
+        LEFT JOIN shopping_cart on shopping_cart.bookId = books.id
+        """)
     fun getCatalogBooks(): LiveData<List<BookCartCountRelation>>
 
+    @Query("""
+        SELECT * FROM books WHERE id in(:ids)
+    """)
+    fun getBooks(ids: List<Long>): List<BookEntity>
+
+    @Transaction
+    @Query("""
+        SELECT books.*, shopping_cart.* FROM books
+        LEFT JOIN shopping_cart on shopping_cart.bookId = books.id
+        WHERE count > 0
+        """)
+    fun getShoppingCart(): LiveData<List<BookCartCountRelation>>
+
+    @Query("""DELETE FROM shopping_cart""")
+    fun clearShoppingCart()
+
+    @Transaction
     @Query("SELECT * FROM books WHERE id = :bookId")
     fun getBookDetails(bookId: Long): LiveData<BookCartCountRelation>
 
     @Query("SELECT * FROM orders")
     fun getHistory(): LiveData<List<OrderEntity>>
 
+    @Transaction
     @Query("""SELECT 
             orders.*,
             order_books_count.*,
@@ -51,6 +75,9 @@ interface BooksDAO {
 
     @Insert
     fun insertOrder(orderEntity: OrderEntity): Long
+
+    @Insert
+    fun insertReviews(reviews: List<ReviewEntity>)
 
     @Insert
     fun insertOrderBooks(booksOrderEntity: List<BookOrderCountEntity>)

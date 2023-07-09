@@ -7,13 +7,16 @@ import java.util.Date
 
 @Entity(tableName = "orders")
 data class OrderEntity(
-    @PrimaryKey(autoGenerate = true) val id: Long,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val date: Date,
-    val number: String,
     val quantityBooks : Int,
     val totalPrice: Int
 ){
     fun toModel(): Order = Order(
-        id, date, number, quantityBooks, totalPrice
+        id = id,
+        date = date,
+        number = id.toString(),
+        quantityBooks = quantityBooks,
+        totalPrice = totalPrice
     )
 }

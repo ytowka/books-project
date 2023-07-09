@@ -7,15 +7,11 @@ import com.gruppa.books.data.db.entities.BookEntity
 import com.gruppa.books.models.Book
 
 data class BookCartCountRelation(
-
     @Embedded
     val book: BookEntity,
 
-    @Relation(
-        parentColumn = "id",
-        entityColumn = "bookId",
-    )
-    val count: BookCartCountEntity
+    @Embedded
+    val count: BookCartCountEntity?
 ){
 
     fun toModel(): Book = Book(
@@ -27,6 +23,6 @@ data class BookCartCountRelation(
         description = book.description,
         mark = book.mark,
         price = book.price,
-        inCartCount = count.count
+        inCartCount = count?.count ?: 0
     )
 }
