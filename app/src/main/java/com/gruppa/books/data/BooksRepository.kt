@@ -3,7 +3,9 @@ package com.gruppa.books.data
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import com.gruppa.books.data.db.BooksDAO
+import com.gruppa.books.data.db.entities.BookCartCountEntity
 import com.gruppa.books.data.db.entities.BookEntity
+import com.gruppa.books.data.db.relations.BookCartCountRelation
 import com.gruppa.books.models.Book
 import com.gruppa.books.models.Order
 
@@ -26,7 +28,7 @@ interface BooksRepository {
     class Impl(val booksDAO: BooksDAO) : BooksRepository{
         override fun getCatalogBooks(): LiveData<List<Book>> {
             return booksDAO.getCatalogBooks().map { bookEntities ->
-                bookEntities.map(BookEntity::toModel)
+                bookEntities.map(BookCartCountRelation::toModel)
             }
         }
 

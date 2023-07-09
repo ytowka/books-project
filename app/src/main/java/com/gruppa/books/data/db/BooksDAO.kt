@@ -27,7 +27,14 @@ interface BooksDAO {
     @Query("""SELECT 
             orders.*,
             order_books_count.*,
-            books.*
+            books.id AS 'book_id',
+            books.author AS 'book_author',
+            books.description AS 'book_description',
+            books.editionYear AS 'book_editionYear',
+            books.imageUrl AS 'book_imageUrl',
+            books.mark AS 'book_mark',
+            books.name AS 'book_name',
+            books.price AS 'book_price'
             FROM orders
             INNER JOIN order_books_count on order_books_count.orderId = orders.id
             INNER JOIN books on books.id = order_books_count.bookId
