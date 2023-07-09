@@ -9,7 +9,9 @@ import android.view.inputmethod.EditorInfo
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.gruppa.books.R
 import com.gruppa.books.databinding.FragmentCatalogBinding
 import com.gruppa.books.models.Book
 
@@ -35,6 +37,7 @@ class CatalogFragment : Fragment(){
 
         val catalogAdapter = CatalogAdapter(
             onCardClick = {
+                findNavController().navigate(R.id.action_catalog_to_productPageFragment, ProductPageFragment.createBundle(it))
                 Log.d("debugg", "onCardClick() called $it")
             },
             onBookBuy = {
