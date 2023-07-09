@@ -15,4 +15,7 @@
     <string name="date">Заказ от %s</string>
     <string name="number">№ %s</string>
     <string name="quantity">%d шт.</string>
+    <string name="detailsDate">Дата:</string>
+    <string name="detailsHeader">Заказ №%s</string>
+    <string name="detailsPrice">Цена: %d</string>
 </resources>

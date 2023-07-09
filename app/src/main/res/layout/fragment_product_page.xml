@@ -22,7 +22,7 @@
             android:textSize="13sp"
             android:textColor="@color/black"
             android:drawableTint="@color/black"
-            android:drawableLeft="@drawable/ic_go_back"
+            android:drawableStart="@drawable/ic_go_back"
             android:backgroundTint="@color/white"
             android:paddingStart="8dp"
             android:paddingEnd="12dp"
@@ -152,11 +152,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:paddingHorizontal="16dp"
                 android:clipToPadding="false"
+                android:paddingHorizontal="16dp"
 
-                tools:listitem="@layout/item_review"
-                />
+                tools:listitem="@layout/item_review" />
         </LinearLayout>
     </ScrollView>
 
