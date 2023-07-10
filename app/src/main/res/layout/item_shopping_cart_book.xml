@@ -53,51 +53,8 @@
         tools:text="240 руб."
         />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ivBook"
-        app:layout_constraintTop_toBottomOf="@id/tvPrice"
-        >
-
-        <ImageButton
-            android:id="@+id/btnLeft"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@drawable/bg_btn_left"
-            android:src="@drawable/ic_minus"
-            android:backgroundTint="@color/blue"
-            app:tint="@color/colorText" />
-
-        <TextView
-            android:id="@+id/tvCounter"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@drawable/bg_tv_counter"
-            android:gravity="center"
-            android:layout_gravity="center_vertical"
-            android:textSize="18sp"
-            android:textColor="@color/colorText"
-            tools:text="1"
-            android:layout_marginHorizontal="2dp"
-            android:backgroundTint="@color/blue"
-            />
-
-        <ImageButton
-            android:id="@+id/btnRight"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@drawable/bg_btn_right"
-            android:src="@drawable/ic_minus"
-            android:backgroundTint="@color/blue"
-            app:tint="@color/colorText"
-            />
-
-    </LinearLayout>
+<include
+    layout="@layout/counter"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
