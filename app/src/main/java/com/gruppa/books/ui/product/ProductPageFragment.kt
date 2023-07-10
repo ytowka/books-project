@@ -47,7 +47,10 @@ class ProductPageFragment : Fragment() {
             productPageAdapter.list = it
         }
 
+        binding.btnGoBack.setOnClickListener { findNavController().navigate(R.id.action_productPageFragment_to_catalog) }
+
         app.mainModule.repository.getBookDetails(bookId).observe(viewLifecycleOwner) {
+            val book = it
             binding.run {
                 tvAuthor.text = it.author
                 tvAnnotation.text = it.description
@@ -60,13 +63,31 @@ class ProductPageFragment : Fragment() {
                     .load(it.imageUrl)
                     .into(ivBook)
 
+                binding.llCounter.btnRight.setOnClickListener {
+                    app.mainModule.repository.addToCart(book.id, book.inCartCount+1)
+                }
+
+                llCounter.btnLeft.setOnClickListener{
+                    app.mainModule.repository.addToCart(bookId, book.inCartCount-1)
+                }
+
+                btnBuy.setOnClickListener {
+                    Log.d("debugg", "buy")
+                    app.mainModule.repository.addToCart(bookId, 1)
+
+                }
+
                 if (it.inCartCount != 0) {
                     btnBuy.visibility = View.GONE
                     llCounter.tvCounter.visibility = View.VISIBLE
                     llCounter.btnLeft.visibility = View.VISIBLE
                     llCounter.btnRight.visibility = View.VISIBLE
+
+
+
                 } else {
                     btnBuy.visibility = View.VISIBLE
+
                     llCounter.tvCounter.visibility = View.GONE
                     llCounter.btnLeft.visibility = View.GONE
                     llCounter.btnRight.visibility = View.GONE
@@ -74,12 +95,12 @@ class ProductPageFragment : Fragment() {
             }
         }
 
-        binding.run {
-            btnBuy.setOnClickListener {
-                Log.d("debugg", "buy")
-            }
-            btnGoBack.setOnClickListener { findNavController().navigate(R.id.action_productPageFragment_to_catalog) }
-        }
+//        binding.run {
+//            btnBuy.setOnClickListener {
+//                Log.d("debugg", "buy")
+//                app.mainModule.repository.addToCart(bookId, 1)
+//            }
+//        }
 
     }
 
