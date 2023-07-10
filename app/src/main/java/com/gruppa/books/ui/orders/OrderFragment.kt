@@ -52,7 +52,7 @@ class OrderFragment : Fragment() {
                         R.string.date, formatter.format(order.date)
                     )
                     tvPrice.text = binding.root.context.getString(R.string.detailsPrice, order.totalPrice)
-                    btnGoBack.setOnClickListener { findNavController().navigate(R.id.action_orderFragment_to_history) }
+                    btnGoBack.setOnClickListener { findNavController().navigateUp() }
                 }
             }
         }

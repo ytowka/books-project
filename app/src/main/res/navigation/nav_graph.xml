@@ -15,7 +15,15 @@
     <fragment
         android:id="@+id/shopping_cart"
         android:name="com.gruppa.books.ui.cart.ShoppingCartFragment"
-        android:label="ShoppingCartFragment" />
+        android:label="ShoppingCartFragment" >
+        <action
+            android:id="@+id/action_shopping_cart_to_product_page"
+            app:destination="@id/product_page" />
+        <action
+            android:id="@+id/action_shopping_cart_to_orderFragment"
+            app:destination="@id/orderFragment"
+            app:popUpTo="@id/shopping_cart" />
+    </fragment>
     <fragment
         android:id="@+id/history"
         android:name="com.gruppa.books.ui.history.HistoryFragment"

@@ -37,7 +37,6 @@ class HistoryFragment : Fragment() {
                     R.id.action_history_to_orderFragment,
                     OrderFragment.createBundle(it)
                 )
-                Log.d("debugg", "onCardClick() called $it")
             },
         )
         val gridLayout = LinearLayoutManager(
