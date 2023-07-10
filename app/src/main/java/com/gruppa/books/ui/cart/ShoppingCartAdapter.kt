@@ -46,15 +46,15 @@ class ShoppingCartAdapter(
                 .load(book.imageUrl)
                 .into(binding.ivBook)
 
-            binding.btnLeft.setOnClickListener {
+            binding.counter.btnLeft.setOnClickListener {
                 onCountUpdate(book.id, book.inCartCount-1)
             }
 
-            binding.btnRight.setOnClickListener {
+            binding.counter.btnRight.setOnClickListener {
                 onCountUpdate(book.id, book.inCartCount+1)
             }
 
-            binding.tvCounter.text = book.inCartCount.toString()
+            binding.counter.tvCounter.text = book.inCartCount.toString()
 
             binding.tvName.text = book.name
             binding.tvAuthor.text = book.author
