@@ -9,7 +9,7 @@ import com.gruppa.books.databinding.ItemHistoryBinding
 import com.gruppa.books.models.Order
 
 class HistoryAdapter(
-    val onCardClick: (Int) -> Unit
+    val onCardClick: (Long) -> Unit
 ) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
     var list: List<Order> = emptyList()
