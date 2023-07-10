@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.gruppa.books.R
 import com.gruppa.books.databinding.FragmentHistoryBinding
 import com.gruppa.books.ui.app
@@ -39,11 +40,8 @@ class HistoryFragment : Fragment() {
                 Log.d("debugg", "onCardClick() called $it")
             },
         )
-        val gridLayout = GridLayoutManager(
-            context,
-            1,
-            GridLayoutManager.VERTICAL,
-            false
+        val gridLayout = LinearLayoutManager(
+            context
         )
         binding.rvHistory.apply {
             adapter = historyAdapter
