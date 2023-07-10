@@ -74,7 +74,7 @@ interface BooksRepository {
 
         override fun addToCart(bookId: Long, count: Int) {
             executorService.submit {
-                booksDAO.addToCart(BookCartCountEntity(bookId, count))
+                booksDAO.addToCart(BookCartCountEntity(bookId, count.coerceIn(0..30)))
             }
         }
 
