@@ -9,13 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.gruppa.books.databinding.FragmentShoppingCartBinding
+import com.gruppa.books.ui.app
 
 class ShoppingCartFragment : Fragment() {
 
     lateinit var binding: FragmentShoppingCartBinding
 
     val viewModel by lazy {
-        ViewModelProvider(this)[ShoppingCartViewModel::class.java]
+        val factory = ShoppingCartViewModel.Factory(app.mainModule.repository)
+        ViewModelProvider(this, factory).get(ShoppingCartViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -30,14 +32,11 @@ class ShoppingCartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val shoppingCartAdapter = ShoppingCartAdapter(
-            onLeftBtnClick = {
-                Log.d("test", "onLeftBtnClick $it")
-            },
-            onRightBtnClick = {
-                Log.d("test", "onRightBtnClick $it")
+        val shoppingCartAdapter = ShoppingCartAdapter{ bookId, count ->
+            if(count in 0..50){
+                app.mainModule.repository.addToCart(bookId, count)
             }
-        )
+        }
 
         val gridLayout = GridLayoutManager(
             context,
@@ -51,7 +50,7 @@ class ShoppingCartFragment : Fragment() {
             layoutManager = gridLayout
         }
 
-        viewModel.shoppingCart.observe(viewLifecycleOwner) {
+        viewModel.cart.observe(viewLifecycleOwner) {
             shoppingCartAdapter.list = it
         }
 
@@ -60,7 +59,7 @@ class ShoppingCartFragment : Fragment() {
         }
 
         binding.btnOrdering.setOnClickListener {
-            Log.d(  "test", "btnOrdering")
+            viewModel.makeOrder()
         }
     }
 }

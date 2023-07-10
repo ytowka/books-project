@@ -21,7 +21,8 @@ class CatalogFragment : Fragment(){
     lateinit var binding: FragmentCatalogBinding
 
     val viewModel by lazy {
-        ViewModelProvider(this)[CatalogViewModel::class.java]
+        val factory = CatalogViewModel.Factory(app.mainModule.repository)
+        ViewModelProvider(this, factory)[CatalogViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -39,10 +40,9 @@ class CatalogFragment : Fragment(){
         val catalogAdapter = CatalogAdapter(
             onCardClick = {
                 findNavController().navigate(R.id.action_catalog_to_productPageFragment, ProductPageFragment.createBundle(it))
-                Log.d("debugg", "onCardClick() called $it")
             },
             onBookBuy = {
-               app.mainModule.repository.addToCart(it, 1)
+                viewModel.addToCart(it)
             }
         )
 

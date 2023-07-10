@@ -12,15 +12,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.gruppa.books.R
 import com.gruppa.books.databinding.FragmentProductPageBinding
+import com.gruppa.books.ui.app
 import com.gruppa.books.ui.catalog.CatalogViewModel
 
 class ProductPageFragment : Fragment() {
 
     lateinit var binding: FragmentProductPageBinding
 
-    val viewModel by lazy {
-        ViewModelProvider(this)[ProductPageViewModel::class.java]
-    }
+    val bookId by lazy { arguments?.getLong(ID, 0L) ?: 0L }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,26 +48,29 @@ class ProductPageFragment : Fragment() {
             layoutManager = gridLayout
         }
 
-        viewModel.reviews.observe(viewLifecycleOwner) {
-            Log.e("DEBUGG", it.size.toString())
+        app.mainModule.repository.getBookReviews(bookId).observe(viewLifecycleOwner) {
             productPageAdapter.list = it
         }
 
-        val product = CatalogViewModel().catalog.value?.single { it.id == arguments?.getLong(ID) }
-        val glide = Glide.with(this)
-        binding.run {
-            tvAuthor.text = product?.author
-            tvAnnotation.text = product?.description
-            tvName.text = product?.name
-            tvEdition.text = product?.editionYear.toString()
-            tvGrade.text = product?.mark.toString()
-            tvPrice.text = product?.price.toString()
-            glide.load(product?.imageUrl).into(ivBook)
+        app.mainModule.repository.getBookDetails(bookId).observe(viewLifecycleOwner){
+            binding.run {
+                tvAuthor.text = it.author
+                tvAnnotation.text = it.description
+                tvName.text = it.name
+                tvEdition.text = it.editionYear.toString()
+                tvGrade.text = it.mark.toString()
+                tvPrice.text = it.price.toString()
+                Glide
+                    .with(view)
+                    .load(it.imageUrl)
+                    .into(ivBook)
+            }
+        }
 
+        binding.run {
             btnBuy.setOnClickListener {
                 Log.d("debugg", "buy")
             }
-
             btnGoBack.setOnClickListener { findNavController().navigate(R.id.action_productPageFragment_to_catalog) }
         }
 

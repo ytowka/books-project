@@ -12,10 +12,6 @@ class App : Application(){
         /*Thread{
             mainModule.booksDao.insertBooks(Books.testBooks.map { it.toEntity() })
         }.start()*/
-        app = this
-    }
 
-    companion object{
-        lateinit var app: App
     }
 }

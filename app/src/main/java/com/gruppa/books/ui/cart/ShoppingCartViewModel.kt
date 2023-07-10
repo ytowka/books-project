@@ -1,14 +1,22 @@
 package com.gruppa.books.ui.cart
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.gruppa.books.App
-import com.gruppa.books.models.Book
+import androidx.lifecycle.ViewModelProvider
+import com.gruppa.books.data.BooksRepository
 
-class ShoppingCartViewModel : ViewModel() {
+class ShoppingCartViewModel (val repository: BooksRepository) : ViewModel(){
 
+    val cart = repository.getCart()
 
-    val shoppingCart: LiveData<List<Book>> = App.app.mainModule.repository.getCart()
+    fun makeOrder(){
+        cart.value?.let { cart ->
+            repository.makeOrder(cart.map { book -> book.id to book.inCartCount })
+        }
+    }
 
+    class Factory(val repository: BooksRepository) : ViewModelProvider.Factory{
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return ShoppingCartViewModel(repository) as T
+        }
+    }
 }
