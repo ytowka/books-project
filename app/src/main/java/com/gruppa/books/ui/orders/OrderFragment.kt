@@ -1,4 +1,4 @@
-package com.gruppa.books.ui
+package com.gruppa.books.ui.orders
 
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.gruppa.books.R
 import com.gruppa.books.databinding.FragmentOrderBinding
+import com.gruppa.books.ui.history.HistoryViewModel
 
 class OrderFragment : Fragment() {
     private lateinit var binding: FragmentOrderBinding
