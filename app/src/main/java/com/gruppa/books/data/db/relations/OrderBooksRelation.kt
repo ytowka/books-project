@@ -9,29 +9,20 @@ import com.gruppa.books.models.Order
 
 data class OrderBooksRelation(
     @Embedded
-    val orderEntity: OrderEntity,
-
-    @Embedded
     val bookCount: BookOrderCountEntity,
 
-    @Embedded("book_")
+    @Embedded
     val book: BookEntity
-)
-
-fun List<OrderBooksRelation>.toOrderWithBooks(): Pair<Order, List<Book>>? {
-    return firstOrNull()?.let { relation ->
-        relation.orderEntity.toModel() to map {
-            Book(
-                id = it.book.id,
-                name = it.book.name,
-                imageUrl = it.book.imageUrl,
-                author = it.book.author,
-                editionYear = it.book.editionYear,
-                description = it.book.description,
-                mark = it.book.mark,
-                price = it.book.price,
-                it.bookCount.count,
-            )
-        }
-    }
+){
+    fun toModel(): Book = Book(
+        id = book.id,
+        name = book.name,
+        imageUrl = book.imageUrl,
+        author = book.author,
+        editionYear = book.editionYear,
+        description = book.description,
+        mark = book.mark,
+        price = book.price,
+        bookCount.count,
+    )
 }

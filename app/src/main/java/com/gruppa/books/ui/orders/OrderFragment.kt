@@ -13,15 +13,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gruppa.books.R
 import com.gruppa.books.databinding.FragmentOrderBinding
+import com.gruppa.books.ui.app
 import com.gruppa.books.ui.history.HistoryViewModel
 
 class OrderFragment : Fragment() {
     private lateinit var binding: FragmentOrderBinding
 
-    private val viewModel by lazy {
-        ViewModelProvider(this)[OrderViewModel::class.java]
-    }
-
+    val orderId by lazy { arguments?.getLong(ID) ?: 0L }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,20 +41,20 @@ class OrderFragment : Fragment() {
             layoutManager = linearLayout
         }
 
-        viewModel.books.observe(viewLifecycleOwner) {
-            Log.e("DEBUGG", it.size.toString())
-            orderAdapter.list = it
-        }
-
-        val order = HistoryViewModel().history.value?.single { it.id == arguments?.getLong(ID) }
-        binding.run {
-            tvOrder.text = binding.root.context.getString(R.string.detailsHeader, order?.number)
-            val formatter = SimpleDateFormat ("dd.MM.yy")
-            tvDateValue.text = binding.root.context.getString(
-                R.string.date, formatter.format(order?.date)
-            )
-            tvPrice.text = binding.root.context.getString(R.string.detailsPrice, order?.totalPrice)
-            btnGoBack.setOnClickListener { findNavController().navigate(R.id.action_orderFragment_to_history) }
+        app.mainModule.repository.getOrderDetails(orderId).observe(viewLifecycleOwner){
+            it?.let { orderWithBooks ->
+                orderAdapter.list = orderWithBooks.second
+                val order = orderWithBooks.first
+                binding.run {
+                    tvOrder.text = binding.root.context.getString(R.string.detailsHeader, order.number)
+                    val formatter = SimpleDateFormat ("dd.MM.yy")
+                    tvDateValue.text = binding.root.context.getString(
+                        R.string.date, formatter.format(order.date)
+                    )
+                    tvPrice.text = binding.root.context.getString(R.string.detailsPrice, order.totalPrice)
+                    btnGoBack.setOnClickListener { findNavController().navigate(R.id.action_orderFragment_to_history) }
+                }
+            }
         }
     }
 

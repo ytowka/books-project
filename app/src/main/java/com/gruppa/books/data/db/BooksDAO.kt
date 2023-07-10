@@ -14,6 +14,7 @@ import com.gruppa.books.data.db.relations.OrderBooksRelation
 import com.gruppa.books.data.db.entities.OrderEntity
 import com.gruppa.books.data.db.entities.ReviewEntity
 import com.gruppa.books.models.Book
+import com.gruppa.books.models.Order
 import com.gruppa.books.models.Review
 
 @Dao
@@ -45,27 +46,20 @@ interface BooksDAO {
     @Query("SELECT * FROM books WHERE id = :bookId")
     fun getBookDetails(bookId: Long): LiveData<BookCartCountRelation>
 
-    @Query("SELECT * FROM orders")
+    @Query("SELECT * FROM orders ORDER BY date DESC")
     fun getHistory(): LiveData<List<OrderEntity>>
 
-    @Transaction
-    @Query("""SELECT 
-            orders.*,
+    @Query("""SELECT
             order_books_count.*,
-            books.id AS 'book_id',
-            books.author AS 'book_author',
-            books.description AS 'book_description',
-            books.editionYear AS 'book_editionYear',
-            books.imageUrl AS 'book_imageUrl',
-            books.mark AS 'book_mark',
-            books.name AS 'book_name',
-            books.price AS 'book_price'
-            FROM orders
-            INNER JOIN order_books_count on order_books_count.orderId = orders.id
+            books.*
+            FROM order_books_count
             INNER JOIN books on books.id = order_books_count.bookId
-            WHERE orders.id = :orderId
+            WHERE order_books_count.orderId = :orderId
             """)
-    fun getOrderDetails(orderId: Int): LiveData<List<OrderBooksRelation>>
+    fun getOrderBooks(orderId: Long): List<OrderBooksRelation>
+
+    @Query("""SELECT * FROM orders WHERE id = :orderId""")
+    fun getOrderById(orderId: Long): OrderEntity
 
     @Query("""SELECT * FROM reviews WHERE bookId = :bookId""")
     fun getBookReviews(bookId: Long): LiveData<List<ReviewEntity>>
