@@ -65,6 +65,11 @@ class ProductPageFragment : Fragment() {
                     llCounter.tvCounter.visibility = View.VISIBLE
                     llCounter.btnLeft.visibility = View.VISIBLE
                     llCounter.btnRight.visibility = View.VISIBLE
+                } else {
+                    btnBuy.visibility = View.VISIBLE
+                    llCounter.tvCounter.visibility = View.GONE
+                    llCounter.btnLeft.visibility = View.GONE
+                    llCounter.btnRight.visibility = View.GONE
                 }
             }
         }
