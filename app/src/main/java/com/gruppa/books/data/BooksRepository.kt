@@ -3,6 +3,7 @@ package com.gruppa.books.data
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import com.gruppa.books.data.db.BooksDAO
+import com.gruppa.books.data.db.BooksDatabase
 import com.gruppa.books.data.db.entities.BookCartCountEntity
 import com.gruppa.books.data.db.entities.BookEntity
 import com.gruppa.books.data.db.entities.BookOrderCountEntity
@@ -29,7 +30,8 @@ interface BooksRepository {
 
     class Impl(
         val booksDAO: BooksDAO,
-        val executorService: ExecutorService
+        val database: BooksDatabase,
+        val executorService: ExecutorService,
         ) : BooksRepository{
         override fun getCatalogBooks(): LiveData<List<Book>> {
             return booksDAO.getCatalogBooks().map { bookEntities ->
@@ -69,23 +71,25 @@ interface BooksRepository {
 
         override fun makeOrder(booksIds: List<Pair<Long, Int>>) {
             executorService.submit {
-                val books = booksDAO.getBooks(booksIds.map {
-                    it.first
-                })
-                val orderEntity = OrderEntity(
-                    date = Date(),
-                    quantityBooks = books.size,
-                    totalPrice = books.sumOf { it.price },
-                )
-                val orderId = booksDAO.insertOrder(orderEntity)
-                val orderBookEntities = books.mapIndexed { index: Int, bookEntity: BookEntity ->
-                    BookOrderCountEntity(
-                        orderId = orderId,
-                        bookId = bookEntity.id,
-                        count = booksIds[index].second
+                database.runInTransaction{
+                    val books = booksDAO.getBooks(booksIds.map {
+                        it.first
+                    })
+                    val orderEntity = OrderEntity(
+                        date = Date(),
+                        quantityBooks = books.size,
+                        totalPrice = books.sumOf { it.price },
                     )
+                    val orderId = booksDAO.insertOrder(orderEntity)
+                    val orderBookEntities = books.mapIndexed { index: Int, bookEntity: BookEntity ->
+                        BookOrderCountEntity(
+                            orderId = orderId,
+                            bookId = bookEntity.id,
+                            count = booksIds[index].second
+                        )
+                    }
+                    booksDAO.insertOrderBooks(orderBookEntities)
                 }
-                booksDAO.insertOrderBooks(orderBookEntities)
             }
         }
 

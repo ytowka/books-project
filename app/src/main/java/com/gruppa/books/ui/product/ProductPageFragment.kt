@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.gruppa.books.R
 import com.gruppa.books.databinding.FragmentProductPageBinding
+import com.gruppa.books.ui.app
 import com.gruppa.books.ui.catalog.CatalogViewModel
 
 class ProductPageFragment : Fragment() {
@@ -54,7 +55,7 @@ class ProductPageFragment : Fragment() {
             productPageAdapter.list = it
         }
 
-        val product = CatalogViewModel().catalog.value?.single { it.id == arguments?.getLong(ID) }
+        val product = CatalogViewModel(app.mainModule.repository).catalog.value?.single { it.id == arguments?.getLong(ID) }
         val glide = Glide.with(this)
         binding.run {
             tvAuthor.text = product?.author

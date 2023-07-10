@@ -11,15 +11,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.gruppa.books.R
 import com.gruppa.books.databinding.FragmentHistoryBinding
+import com.gruppa.books.ui.app
 import com.gruppa.books.ui.orders.OrderFragment
 
 class HistoryFragment : Fragment() {
 
     lateinit var binding: FragmentHistoryBinding
-
-    val viewModel by lazy {
-        ViewModelProvider(this)[HistoryViewModel::class.java]
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,7 +49,7 @@ class HistoryFragment : Fragment() {
             adapter = historyAdapter
             layoutManager = gridLayout
         }
-        viewModel.history.observe(viewLifecycleOwner) {
+        app.mainModule.repository.getHistory().observe(viewLifecycleOwner) {
             historyAdapter.list = it
         }
     }

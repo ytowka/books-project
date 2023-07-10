@@ -22,6 +22,7 @@ class MainModule(val app: App) {
     val repository: BooksRepository by lazy {
         BooksRepository.Impl(
             booksDao,
+            database,
             executorService
         )
     }

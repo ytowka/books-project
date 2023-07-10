@@ -9,6 +9,4 @@ import com.gruppa.books.models.Book
 class ShoppingCartViewModel : ViewModel() {
 
 
-    val shoppingCart: LiveData<List<Book>> = App.app.mainModule.repository.getCart()
-
 }
