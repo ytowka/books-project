@@ -54,8 +54,7 @@
         />
 
 <include
-    android:id="@+id/counter"
+    android:id="@+id/ll_counter"
     layout="@layout/counter"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 

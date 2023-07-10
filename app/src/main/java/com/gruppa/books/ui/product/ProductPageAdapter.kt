@@ -11,7 +11,6 @@ class ProductPageAdapter : RecyclerView.Adapter<ProductPageAdapter.ProductPageVi
 
     var list: List<Review> = emptyList()
         set(value) {
-            Log.e("DEBUGG", value.size.toString())
             field = value
             notifyDataSetChanged()
         }
