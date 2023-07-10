@@ -15,6 +15,11 @@ class ShoppingCartFragment : Fragment() {
 
     lateinit var binding: FragmentShoppingCartBinding
 
+    val viewModel by lazy {
+        val factory = ShoppingCartViewModel.Factory(app.mainModule.repository)
+        ViewModelProvider(this, factory).get(ShoppingCartViewModel::class.java)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -45,7 +50,7 @@ class ShoppingCartFragment : Fragment() {
             layoutManager = gridLayout
         }
 
-        app.mainModule.repository.getCart().observe(viewLifecycleOwner) {
+        viewModel.cart.observe(viewLifecycleOwner) {
             shoppingCartAdapter.list = it
         }
 
@@ -54,7 +59,7 @@ class ShoppingCartFragment : Fragment() {
         }
 
         binding.btnOrdering.setOnClickListener {
-            Log.d(  "test", "btnOrdering")
+            viewModel.makeOrder()
         }
     }
 }

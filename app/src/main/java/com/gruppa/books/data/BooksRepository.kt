@@ -89,6 +89,7 @@ interface BooksRepository {
                         )
                     }
                     booksDAO.insertOrderBooks(orderBookEntities)
+                    booksDAO.clearShoppingCart()
                 }
             }
         }
