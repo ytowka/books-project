@@ -43,7 +43,9 @@ interface BooksDAO {
     fun clearShoppingCart()
 
     @Transaction
-    @Query("SELECT * FROM books WHERE id = :bookId")
+    @Query("""
+        SELECT * FROM books WHERE id = :bookId
+        """)
     fun getBookDetails(bookId: Long): LiveData<BookCartCountRelation>
 
     @Query("SELECT * FROM orders ORDER BY date DESC")

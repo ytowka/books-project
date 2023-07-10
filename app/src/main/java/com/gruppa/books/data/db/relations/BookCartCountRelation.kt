@@ -10,7 +10,10 @@ data class BookCartCountRelation(
     @Embedded
     val book: BookEntity,
 
-    @Embedded
+    @Relation(
+        parentColumn = "id",
+        entityColumn = "bookId"
+    )
     val count: BookCartCountEntity?
 ){
 
