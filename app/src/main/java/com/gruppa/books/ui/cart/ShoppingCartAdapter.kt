@@ -10,6 +10,7 @@ import com.gruppa.books.models.Book
 
 class ShoppingCartAdapter(
     val onCountUpdate: (Long, Int) ->  Unit,
+    val onCardClick: (Long) -> Unit,
 ) : RecyclerView.Adapter<ShoppingCartAdapter.ShoppingCartViewHolder>() {
 
     var list: List<Book> = emptyList()
@@ -48,6 +49,10 @@ class ShoppingCartAdapter(
 
             binding.llCounter.btnLeft.setOnClickListener {
                 onCountUpdate(book.id, book.inCartCount-1)
+            }
+
+            binding.root.setOnClickListener {
+                onCardClick(book.id)
             }
 
             binding.llCounter.btnRight.setOnClickListener {

@@ -1,5 +1,7 @@
 package com.gruppa.books.ui.cart
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.gruppa.books.data.BooksRepository
@@ -8,9 +10,12 @@ class ShoppingCartViewModel (val repository: BooksRepository) : ViewModel(){
 
     val cart = repository.getCart()
 
-    fun makeOrder(){
-        cart.value?.let { cart ->
-            repository.makeOrder(cart.map { book -> book.id to book.inCartCount })
+    fun makeOrder(): LiveData<Long>?{
+        val cartBooks = cart.value
+        if(cartBooks != null && !cartBooks.isEmpty()){
+            return repository.makeOrder(cartBooks.map { book -> book.id to book.inCartCount })
+        }else{
+            return null
         }
     }
 

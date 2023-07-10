@@ -7,9 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.gruppa.books.R
 import com.gruppa.books.databinding.FragmentShoppingCartBinding
 import com.gruppa.books.ui.app
+import com.gruppa.books.ui.orders.OrderFragment
+import com.gruppa.books.ui.product.ProductPageFragment
 
 class ShoppingCartFragment : Fragment() {
 
@@ -32,11 +36,15 @@ class ShoppingCartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val shoppingCartAdapter = ShoppingCartAdapter{ bookId, count ->
-            if(count in 0..50){
+        val shoppingCartAdapter = ShoppingCartAdapter(
+            onCountUpdate = { bookId, count ->
+            if (count in 0..50) {
                 app.mainModule.repository.addToCart(bookId, count)
             }
-        }
+        },
+        onCardClick = {
+            findNavController().navigate(R.id.action_shopping_cart_to_product_page, ProductPageFragment.createBundle(it))
+        })
 
         val gridLayout = GridLayoutManager(
             context,
@@ -59,7 +67,12 @@ class ShoppingCartFragment : Fragment() {
         }
 
         binding.btnOrdering.setOnClickListener {
-            viewModel.makeOrder()
+            viewModel.makeOrder()?.observe(viewLifecycleOwner){
+                findNavController().navigate(
+                    R.id.action_shopping_cart_to_orderFragment,
+                    OrderFragment.createBundle(it)
+                )
+            }
         }
     }
 }
