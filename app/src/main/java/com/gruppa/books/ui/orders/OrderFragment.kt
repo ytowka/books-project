@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.gruppa.books.R
 import com.gruppa.books.databinding.FragmentOrderBinding
 import com.gruppa.books.ui.history.HistoryViewModel
@@ -35,16 +36,11 @@ class OrderFragment : Fragment() {
 
         val orderAdapter = OrderAdapter()
 
-        val gridLayout = GridLayoutManager(
-            context,
-            1,
-            GridLayoutManager.VERTICAL,
-            false
-        )
+        val linearLayout = LinearLayoutManager(context)
 
         binding.rvItems.apply {
             adapter = orderAdapter
-            layoutManager = gridLayout
+            layoutManager = linearLayout
         }
 
         viewModel.books.observe(viewLifecycleOwner) {
