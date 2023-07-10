@@ -1,9 +1,8 @@
-package com.gruppa.books.ui
+package com.gruppa.books.ui.catalog
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelStoreOwner
 import com.gruppa.books.App
 import com.gruppa.books.models.Book
 

@@ -1,4 +1,4 @@
-package com.gruppa.books.ui
+package com.gruppa.books.ui.product
 
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.gruppa.books.R
 import com.gruppa.books.databinding.FragmentProductPageBinding
+import com.gruppa.books.ui.catalog.CatalogViewModel
 
 class ProductPageFragment : Fragment() {
 

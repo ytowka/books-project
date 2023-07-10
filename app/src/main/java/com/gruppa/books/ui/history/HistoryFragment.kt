@@ -1,4 +1,4 @@
-package com.gruppa.books.ui
+package com.gruppa.books.ui.history
 
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.gruppa.books.R
 import com.gruppa.books.databinding.FragmentHistoryBinding
+import com.gruppa.books.ui.orders.OrderFragment
 
 class HistoryFragment : Fragment() {
 
