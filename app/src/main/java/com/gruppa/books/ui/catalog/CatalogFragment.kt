@@ -1,7 +1,6 @@
 package com.gruppa.books.ui.catalog
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +11,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.gruppa.books.R
 import com.gruppa.books.databinding.FragmentCatalogBinding
-import com.gruppa.books.ui.product.ProductPageFragment
 import com.gruppa.books.ui.app
 import com.gruppa.books.ui.hideKeyboard
+import com.gruppa.books.ui.product.ProductPageFragment
 
-class CatalogFragment : Fragment(){
+class CatalogFragment : Fragment() {
 
     lateinit var binding: FragmentCatalogBinding
 
@@ -39,10 +38,19 @@ class CatalogFragment : Fragment(){
 
         val catalogAdapter = CatalogAdapter(
             onCardClick = {
-                findNavController().navigate(R.id.action_catalog_to_productPageFragment, ProductPageFragment.createBundle(it))
+                findNavController().navigate(
+                    R.id.action_catalog_to_productPageFragment,
+                    ProductPageFragment.createBundle(it)
+                )
             },
             onBookBuy = {
                 viewModel.addToCart(it)
+            },
+            onBookDelete = {
+                viewModel.decreaseInCart(it)
+            },
+            onBookAdd = {
+                viewModel.increaseInCart(it)
             }
         )
 
@@ -69,7 +77,7 @@ class CatalogFragment : Fragment(){
             layoutManager = gridLayout
         }
 
-        viewModel.catalog.observe(viewLifecycleOwner){
+        viewModel.catalog.observe(viewLifecycleOwner) {
             catalogAdapter.list = it
         }
     }
