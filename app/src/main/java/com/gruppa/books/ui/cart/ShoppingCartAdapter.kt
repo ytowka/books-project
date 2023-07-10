@@ -9,8 +9,7 @@ import com.gruppa.books.databinding.ItemShoppingCartBookBinding
 import com.gruppa.books.models.Book
 
 class ShoppingCartAdapter(
-    val onLeftBtnClick: (Long) ->  Unit,
-    val onRightBtnClick: (Long) ->  Unit,
+    val onCountUpdate: (Long, Int) ->  Unit,
 ) : RecyclerView.Adapter<ShoppingCartAdapter.ShoppingCartViewHolder>() {
 
     var list: List<Book> = emptyList()
@@ -48,12 +47,14 @@ class ShoppingCartAdapter(
                 .into(binding.ivBook)
 
             binding.btnLeft.setOnClickListener {
-                onLeftBtnClick(book.id)
+                onCountUpdate(book.id, book.inCartCount-1)
             }
 
             binding.btnRight.setOnClickListener {
-                onRightBtnClick(book.id)
+                onCountUpdate(book.id, book.inCartCount+1)
             }
+
+            binding.tvCounter.text = book.inCartCount.toString()
 
             binding.tvName.text = book.name
             binding.tvAuthor.text = book.author
