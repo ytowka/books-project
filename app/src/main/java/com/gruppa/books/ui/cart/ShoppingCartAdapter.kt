@@ -56,6 +56,7 @@ class ShoppingCartAdapter(
 
             binding.llCounter.tvCounter.text = book.inCartCount.toString()
 
+
             binding.tvName.text = book.name
             binding.tvAuthor.text = book.author
             binding.tvPrice.text = binding.root.context.getString(R.string.price, book.price)

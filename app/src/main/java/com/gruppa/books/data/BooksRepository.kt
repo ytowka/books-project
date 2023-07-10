@@ -29,7 +29,7 @@ interface BooksRepository {
     fun getCart(): LiveData<List<Book>>
     fun getOrderDetails(orderId: Long): LiveData<Pair<Order, List<Book>>>
     fun addToCart(bookId: Long, count: Int)
-    fun makeOrder(booksIds: List<Pair<Long, Int>>): Future<Long>
+    fun makeOrder(booksIds: List<Pair<Long, Int>>): LiveData<Long>
     fun getBookReviews(bookId: Long): LiveData<List<Review>>
 
     class Impl(
@@ -78,29 +78,33 @@ interface BooksRepository {
             }
         }
 
-        override fun makeOrder(booksIds: List<Pair<Long, Int>>): Future<Long> = executorService.submit<Long> {
-            var orderId = 0L
-            database.runInTransaction{
-                val books = booksDAO.getBooks(booksIds.map {
-                    it.first
-                })
-                val orderEntity = OrderEntity(
-                    date = Date(),
-                    quantityBooks = books.size,
-                    totalPrice = books.sumOf { it.price },
-                )
-                orderId = booksDAO.insertOrder(orderEntity)
-                val orderBookEntities = books.mapIndexed { index: Int, bookEntity: BookEntity ->
-                    BookOrderCountEntity(
-                        orderId = orderId,
-                        bookId = bookEntity.id,
-                        count = booksIds[index].second
+        override fun makeOrder(booksIds: List<Pair<Long, Int>>): LiveData<Long>{
+            val liveData = MutableLiveData<Long>()
+            executorService.submit {
+                var orderId = 0L
+                database.runInTransaction {
+                    val books = booksDAO.getBooks(booksIds.map {
+                        it.first
+                    })
+                    val orderEntity = OrderEntity(
+                        date = Date(),
+                        quantityBooks = books.size,
+                        totalPrice = books.sumOf { it.price },
                     )
+                    orderId = booksDAO.insertOrder(orderEntity)
+                    val orderBookEntities = books.mapIndexed { index: Int, bookEntity: BookEntity ->
+                        BookOrderCountEntity(
+                            orderId = orderId,
+                            bookId = bookEntity.id,
+                            count = booksIds[index].second
+                        )
+                    }
+                    booksDAO.insertOrderBooks(orderBookEntities)
+                    booksDAO.clearShoppingCart()
                 }
-                booksDAO.insertOrderBooks(orderBookEntities)
-                booksDAO.clearShoppingCart()
+                liveData.postValue(orderId)
             }
-            orderId
+            return liveData
         }
 
         override fun getBookReviews(bookId: Long): LiveData<List<Review>> {
