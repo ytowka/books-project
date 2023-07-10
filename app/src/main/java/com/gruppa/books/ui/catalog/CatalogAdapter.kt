@@ -55,6 +55,8 @@ class CatalogAdapter(
             binding.tvName.text = book.name
             binding.tvPrice.text = binding.root.context.getString(R.string.price, book.price)
             binding.tvAuthor.text = book.author
+
+
         }
     }
 }

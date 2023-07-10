@@ -6,14 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.gruppa.books.R
 import com.gruppa.books.databinding.FragmentProductPageBinding
 import com.gruppa.books.ui.app
-import com.gruppa.books.ui.catalog.CatalogViewModel
 
 class ProductPageFragment : Fragment() {
 
@@ -36,11 +34,8 @@ class ProductPageFragment : Fragment() {
 
         val productPageAdapter = ProductPageAdapter()
 
-        val gridLayout = GridLayoutManager(
-            context,
-            1,
-            GridLayoutManager.VERTICAL,
-            false
+        val gridLayout = LinearLayoutManager(
+            context
         )
 
         binding.rvProductPage.apply {
@@ -52,7 +47,7 @@ class ProductPageFragment : Fragment() {
             productPageAdapter.list = it
         }
 
-        app.mainModule.repository.getBookDetails(bookId).observe(viewLifecycleOwner){
+        app.mainModule.repository.getBookDetails(bookId).observe(viewLifecycleOwner) {
             binding.run {
                 tvAuthor.text = it.author
                 tvAnnotation.text = it.description
@@ -64,6 +59,18 @@ class ProductPageFragment : Fragment() {
                     .with(view)
                     .load(it.imageUrl)
                     .into(ivBook)
+
+                if (it.inCartCount != 0) {
+                    btnBuy.visibility = View.GONE
+                    llCounter.tvCounter.visibility = View.VISIBLE
+                    llCounter.btnLeft.visibility = View.VISIBLE
+                    llCounter.btnRight.visibility = View.VISIBLE
+                } else {
+                    btnBuy.visibility = View.VISIBLE
+                    llCounter.tvCounter.visibility = View.GONE
+                    llCounter.btnLeft.visibility = View.GONE
+                    llCounter.btnRight.visibility = View.GONE
+                }
             }
         }
 

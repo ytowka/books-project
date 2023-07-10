@@ -1,40 +1,37 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="8dp"
+        android:background="@color/colorLightGray"
         android:paddingHorizontal="16dp"
-        android:background="@color/colorLightGray">
+        android:paddingVertical="8dp">
 
         <Button
             android:id="@+id/btn_goBack"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="@string/go_back"
-            android:textSize="13sp"
-            android:textColor="@color/colorText"
-            android:drawableTint="@color/colorText"
-            android:drawableLeft="@drawable/ic_go_back"
             android:backgroundTint="@color/background"
+            android:drawableLeft="@drawable/ic_go_back"
+            android:drawableTint="@color/colorText"
             android:paddingStart="8dp"
             android:paddingEnd="12dp"
             android:paddingBottom="8dp"
-            />
+            android:text="@string/go_back"
+            android:textColor="@color/colorText"
+            android:textSize="13sp" />
     </FrameLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        >
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,25 +42,23 @@
                 android:id="@+id/ivBook"
                 android:layout_width="wrap_content"
                 android:layout_height="295dp"
-                app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/image_book_test"
-                />
+                tools:src="@drawable/image_book_test" />
 
             <TextView
                 android:id="@+id/tvName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="4dp"
-                android:layout_marginHorizontal="16dp"
+                android:textColor="@color/colorCaptionText"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/colorCaptionText"
-                tools:text="Письма к брату Тео"
-                />
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Письма к брату Тео" />
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -76,22 +71,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
-                    android:textSize="13sp"
                     android:textColor="@color/colorText"
+                    android:textSize="13sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    tools:text="Ван Гог Винсент"
-                    />
+                    tools:text="Ван Гог Винсент" />
 
                 <TextView
                     android:id="@+id/tvEdition"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:textSize="13sp"
                     android:textColor="@color/colorText"
+                    android:textSize="13sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:text="Издание 2023 года"
-                    />
+                    tools:text="Издание 2023 года" />
             </FrameLayout>
 
             <TextView
@@ -100,12 +93,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="4dp"
-                android:textSize="12sp"
-                android:textColor="@color/colorText"
-                app:layout_constraintStart_toStartOf="parent"
                 android:lineSpacingMultiplier="1.25"
-                tools:text="«Письма к брату Тео» – поразительный по силе и искренности человеческий документ, повествующий не только о фактах недолгой и трагической жизни Винсента Ван Гога, но и о том, какая огромная внутренняя работа, какое духовное содержание стояло за каждой картиной этого не признанного при жизни гения..."
-                />
+                android:textColor="@color/colorText"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="«Письма к брату Тео» – поразительный по силе и искренности человеческий документ, повествующий не только о фактах недолгой и трагической жизни Винсента Ван Гога, но и о том, какая огромная внутренняя работа, какое духовное содержание стояло за каждой картиной этого не признанного при жизни гения..." />
 
             <FrameLayout
                 android:layout_width="75dp"
@@ -117,35 +109,32 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
-                    android:textSize="13sp"
-                    android:textColor="@color/colorText"
-                    app:layout_constraintStart_toStartOf="parent"
                     android:text="@string/grade"
-                    />
+                    android:textColor="@color/colorText"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
                     android:id="@+id/tvGrade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:textSize="13sp"
                     android:textColor="@color/colorText"
+                    android:textSize="13sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:text="4.9"
-                    />
+                    tools:text="4.9" />
             </FrameLayout>
 
             <TextView
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:textStyle="bold"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="12dp"
                 android:text="@string/reviews"
                 android:textColor="@color/colorCaptionText"
-                />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_product_page"
@@ -162,9 +151,9 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:background="@color/colorLightGray"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/colorLightGray">
+        app:layout_constraintTop_toTopOf="parent">
 
         <FrameLayout
             android:layout_width="200dp"
@@ -174,38 +163,46 @@
             android:layout_marginVertical="19dp">
 
             <TextView
-                android:layout_width="40dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:text="@string/price1"
                 android:textColor="@color/colorText"
                 android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="parent"
-                />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/tvPrice"
-                android:layout_width="155dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:textColor="@color/colorText"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                tools:text="240 руб."
-                />
+                tools:text="240 руб." />
         </FrameLayout>
 
-        <Button
-            android:id="@+id/btn_buy"
+
+        <include
+            android:id="@+id/ll_counter"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
             android:layout_gravity="end"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="10dp"
-            android:layout_width="96dp"
+            android:visibility="gone"
+            layout="@layout/counter"/>
+
+        <Button
+            android:id="@+id/btn_buy"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="@string/buy"
-            android:textSize="13sp"
-            android:textColor="@color/colorText"
+            android:layout_gravity="end"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="10dp"
             android:backgroundTint="@color/background"
-            />
+            android:text="@string/buy"
+            android:textColor="@color/colorText"
+            android:textSize="13sp" />
     </FrameLayout>
 </LinearLayout>
