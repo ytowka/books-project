@@ -1,7 +1,6 @@
 package com.gruppa.books.ui.product
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +30,7 @@ class ProductPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentProductPageBinding.bind(view)
+
 
         val productPageAdapter = ProductPageAdapter()
 
@@ -64,43 +64,27 @@ class ProductPageFragment : Fragment() {
                     .into(ivBook)
 
                 binding.llCounter.btnRight.setOnClickListener {
-                    app.mainModule.repository.addToCart(book.id, book.inCartCount+1)
+                    app.mainModule.repository.addToCart(book.id, book.inCartCount + 1)
                 }
 
-                llCounter.btnLeft.setOnClickListener{
-                    app.mainModule.repository.addToCart(bookId, book.inCartCount-1)
+                llCounter.btnLeft.setOnClickListener {
+                    app.mainModule.repository.addToCart(bookId, book.inCartCount - 1)
                 }
 
                 btnBuy.setOnClickListener {
-                    Log.d("debugg", "buy")
-                    app.mainModule.repository.addToCart(bookId, 1)
-
+                    app.mainModule.repository.addToCart(bookId, book.inCartCount + 1)
                 }
 
-                if (it.inCartCount != 0) {
+                if (book.inCartCount != 0) {
                     btnBuy.visibility = View.GONE
-                    llCounter.tvCounter.visibility = View.VISIBLE
-                    llCounter.btnLeft.visibility = View.VISIBLE
-                    llCounter.btnRight.visibility = View.VISIBLE
-
-
-
+                    llCounter.tvCounter.text = book.inCartCount.toString()
+                    llCounter.root.visibility = View.VISIBLE
                 } else {
                     btnBuy.visibility = View.VISIBLE
-
-                    llCounter.tvCounter.visibility = View.GONE
-                    llCounter.btnLeft.visibility = View.GONE
-                    llCounter.btnRight.visibility = View.GONE
+                    llCounter.root.visibility = View.GONE
                 }
             }
         }
-
-//        binding.run {
-//            btnBuy.setOnClickListener {
-//                Log.d("debugg", "buy")
-//                app.mainModule.repository.addToCart(bookId, 1)
-//            }
-//        }
 
     }
 
