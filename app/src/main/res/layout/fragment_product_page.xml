@@ -16,21 +16,21 @@
 
         <Button
             android:id="@+id/btn_goBack"
-            android:layout_width="96dp"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:text="@string/go_back"
             android:textSize="13sp"
-            android:textColor="@color/black"
-            android:drawableTint="@color/black"
-            android:drawableStart="@drawable/ic_go_back"
-            android:backgroundTint="@color/white"
+            android:textColor="@color/colorText"
+            android:drawableTint="@color/colorText"
+            android:drawableLeft="@drawable/ic_go_back"
+            android:backgroundTint="@color/background"
             android:paddingStart="8dp"
             android:paddingEnd="12dp"
             android:paddingBottom="8dp"
             />
     </FrameLayout>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -77,7 +77,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:textSize="13sp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/colorText"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:text="Ван Гог Винсент"
                     />
@@ -88,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:textSize="13sp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/colorText"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:text="Издание 2023 года"
                     />
@@ -101,7 +101,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="4dp"
                 android:textSize="12sp"
-                android:textColor="@color/black"
+                android:textColor="@color/colorText"
                 app:layout_constraintStart_toStartOf="parent"
                 android:lineSpacingMultiplier="1.25"
                 tools:text="«Письма к брату Тео» – поразительный по силе и искренности человеческий документ, повествующий не только о фактах недолгой и трагической жизни Винсента Ван Гога, но и о том, какая огромная внутренняя работа, какое духовное содержание стояло за каждой картиной этого не признанного при жизни гения..."
@@ -118,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:textSize="13sp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/colorText"
                     app:layout_constraintStart_toStartOf="parent"
                     android:text="@string/grade"
                     />
@@ -129,7 +129,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:textSize="13sp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/colorText"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:text="4.9"
                     />
@@ -157,7 +157,7 @@
 
                 tools:listitem="@layout/item_review" />
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -178,7 +178,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:text="@string/price1"
-                android:textColor="@color/black"
+                android:textColor="@color/colorText"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
                 />
@@ -188,7 +188,7 @@
                 android:layout_width="155dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:textColor="@color/black"
+                android:textColor="@color/colorText"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:text="240 руб."
@@ -204,8 +204,8 @@
             android:layout_height="40dp"
             android:text="@string/buy"
             android:textSize="13sp"
-            android:textColor="@color/black"
-            android:backgroundTint="@color/white"
+            android:textColor="@color/colorText"
+            android:backgroundTint="@color/background"
             />
     </FrameLayout>
 </LinearLayout>

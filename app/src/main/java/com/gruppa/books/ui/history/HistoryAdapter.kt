@@ -1,4 +1,4 @@
-package com.gruppa.books.ui
+package com.gruppa.books.ui.history
 
 import android.icu.text.SimpleDateFormat
 import android.view.LayoutInflater
@@ -22,7 +22,7 @@ class HistoryAdapter(
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): HistoryAdapter.HistoryViewHolder {
+    ): HistoryViewHolder {
         return HistoryViewHolder(
             ItemHistoryBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -32,7 +32,7 @@ class HistoryAdapter(
         )
     }
 
-    override fun onBindViewHolder(holder: HistoryAdapter.HistoryViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         holder.bind(list[position])
     }
 

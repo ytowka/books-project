@@ -1,4 +1,4 @@
-package com.gruppa.books.ui
+package com.gruppa.books.ui.cart
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

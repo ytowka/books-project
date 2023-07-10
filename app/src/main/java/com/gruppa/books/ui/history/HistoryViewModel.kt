@@ -1,4 +1,4 @@
-package com.gruppa.books.ui
+package com.gruppa.books.ui.history
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

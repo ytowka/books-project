@@ -1,11 +1,10 @@
-package com.gruppa.books.ui
+package com.gruppa.books.ui.catalog
 
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -13,7 +12,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.gruppa.books.R
 import com.gruppa.books.databinding.FragmentCatalogBinding
-import com.gruppa.books.models.Book
+import com.gruppa.books.ui.product.ProductPageFragment
+import com.gruppa.books.ui.app
+import com.gruppa.books.ui.hideKeyboard
 
 class CatalogFragment : Fragment(){
 
@@ -41,7 +42,7 @@ class CatalogFragment : Fragment(){
                 Log.d("debugg", "onCardClick() called $it")
             },
             onBookBuy = {
-                Log.d("debugg", "onBookBuy() called $it")
+               app.mainModule.repository.addToCart(it, 1)
             }
         )
 

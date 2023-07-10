@@ -1,4 +1,4 @@
-package com.gruppa.books.ui
+package com.gruppa.books.ui.product
 
 import android.util.Log
 import android.view.LayoutInflater
