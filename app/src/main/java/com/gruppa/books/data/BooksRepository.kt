@@ -89,7 +89,9 @@ interface BooksRepository {
                     val orderEntity = OrderEntity(
                         date = Date(),
                         quantityBooks = books.size,
-                        totalPrice = books.sumOf { it.price },
+                        totalPrice = books.foldIndexed(0) { index,acc, book ->
+                            acc + book.price * booksIds[index].second
+                                                          },
                     )
                     orderId = booksDAO.insertOrder(orderEntity)
                     val orderBookEntities = books.mapIndexed { index: Int, bookEntity: BookEntity ->
