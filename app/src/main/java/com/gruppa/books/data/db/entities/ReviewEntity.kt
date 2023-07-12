@@ -6,7 +6,7 @@ import com.gruppa.books.models.Review
 
 @Entity("reviews")
 data class ReviewEntity(
-    @PrimaryKey val id: Long,
+    @PrimaryKey(autoGenerate = true) val id: Long,
     val bookId: Long,
     val name: String,
     val grade: Float,

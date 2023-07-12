@@ -10,7 +10,11 @@ class App : Application(){
         super.onCreate()
 
         /*Thread{
-            mainModule.booksDao.insertBooks(Books.testBooks.map { it.toEntity() })
+            val ids = mainModule.booksDao.insertBooks(Books.testBooks.map { it.toEntity() })
+            val reviews = ids.map {
+                Reviews.testReview.copy(bookId = it)
+            }
+            mainModule.booksDao.insertReviews(reviews)
         }.start()*/
 
     }

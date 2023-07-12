@@ -79,5 +79,5 @@ interface BooksDAO {
     fun insertOrderBooks(booksOrderEntity: List<BookOrderCountEntity>)
 
     @Insert
-    fun insertBooks(books: List<BookEntity>)
+    fun insertBooks(books: List<BookEntity>): List<Long>
 }
